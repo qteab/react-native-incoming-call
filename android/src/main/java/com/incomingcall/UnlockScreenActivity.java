@@ -2,6 +2,7 @@ package com.incomingcall;
 
 import android.app.KeyguardManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
@@ -155,17 +156,6 @@ public class UnlockScreenActivity extends AppCompatActivity implements UnlockScr
     }
 
     private void acceptDialing() {
-        // WritableMap params = Arguments.createMap();
-        // params.putBoolean("accept", true);
-        // params.putString("uuid", uuid);
-        // if (!IncomingCallModule.reactContext.hasCurrentActivity()) {
-        //     params.putBoolean("isHeadless", true);
-        // }
-
-        // sendEvent("answerCall", params);
-
-        // finish();
-
       WritableMap params = Arguments.createMap();
       params.putBoolean("accept", true);
       params.putString("uuid", uuid);
@@ -193,29 +183,19 @@ public class UnlockScreenActivity extends AppCompatActivity implements UnlockScr
     }
 
     private void dismissDialing() {
-        // WritableMap params = Arguments.createMap();
-        // params.putBoolean("accept", false);
-        // params.putString("uuid", uuid);
-        // if (!IncomingCallModule.reactContext.hasCurrentActivity()) {
-        //     params.putBoolean("isHeadless", true);
-        // }
-
-        // sendEvent("endCall", params);
-
-        // finish();
         WritableMap params = Arguments.createMap();
-      params.putBoolean("accept", false);
-      params.putString("uuid", uuid);
-      if (timer != null) {
-        timer.cancel();
-      }
-      if (!IncomingCallModule.reactContext.hasCurrentActivity()) {
-          params.putBoolean("isHeadless", true);
-      }
+        params.putBoolean("accept", false);
+        params.putString("uuid", uuid);
+        if (timer != null) {
+          timer.cancel();
+        }
+        if (!IncomingCallModule.reactContext.hasCurrentActivity()) {
+            params.putBoolean("isHeadless", true);
+        }
 
-      sendEvent("endCall", params);
+        sendEvent("endCall", params);
 
-      finish();
+        finish();
     }
 
     @Override
