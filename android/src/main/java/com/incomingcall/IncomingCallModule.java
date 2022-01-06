@@ -6,7 +6,6 @@ import android.app.Activity;
 import android.view.WindowManager;
 import android.content.Context;
 import android.util.Log;
-
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -52,20 +51,18 @@ public class IncomingCallModule extends ReactContextBaseJavaModule {
             WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD +
             WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON +
             WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
-
             i.putExtras(bundle);
             reactContext.startActivity(i);
+            
         }
     }
 
     @ReactMethod
     public void dismiss() {
-        // final Activity activity = reactContext.getCurrentActivity();
 
-        // assert activity != null;
-
-        UnlockScreenActivity.dismissIncoming();
-
+        if (UnlockScreenActivity.active) {
+           UnlockScreenActivity.getInstance().dismissIncoming();
+        }
         return;
     }
 
