@@ -36,6 +36,7 @@ public class UnlockScreenActivity extends AppCompatActivity implements UnlockScr
     private TextView tvName;
     private TextView tvInfo;
     private ImageView ivAvatar;
+    private Integer timeout = 0;
     private String uuid = "";
     static boolean active = false;
     private static Vibrator v = (Vibrator) IncomingCallModule.reactContext.getSystemService(Context.VIBRATOR_SERVICE);
@@ -97,6 +98,10 @@ public class UnlockScreenActivity extends AppCompatActivity implements UnlockScr
                     Picasso.get().load(avatar).transform(new CircleTransform()).into(ivAvatar);
                 }
             }
+            if (bundle.containsKey("timeout")) {
+                this.timeout = bundle.getInt("timeout");
+            }
+            else this.timeout = 0;
         }
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
