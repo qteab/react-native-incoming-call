@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.view.WindowManager;
 import android.content.Context;
 import android.util.Log;
+
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -54,29 +55,19 @@ public class IncomingCallModule extends ReactContextBaseJavaModule {
 
             i.putExtras(bundle);
             reactContext.startActivity(i);
-
-            // if (timeout > 0) {
-            //     new Timer().schedule(new TimerTask() {
-            //         @Override
-            //         public void run() {
-            //             // this code will be executed after timeout seconds
-            //             UnlockScreenActivity.dismissIncoming();
-            //         }
-            //     }, timeout);
-            // }
         }
     }
 
-    // @ReactMethod
-    // public void dismiss() {
-    //     // final Activity activity = reactContext.getCurrentActivity();
+    @ReactMethod
+    public void dismiss() {
+        // final Activity activity = reactContext.getCurrentActivity();
 
-    //     // assert activity != null;
+        // assert activity != null;
 
-    //     UnlockScreenActivity.dismissIncoming();
+        UnlockScreenActivity.dismissIncoming();
 
-    //     return;
-    // }
+        return;
+    }
 
     private Context getAppContext() {
         return this.reactContext.getApplicationContext();
