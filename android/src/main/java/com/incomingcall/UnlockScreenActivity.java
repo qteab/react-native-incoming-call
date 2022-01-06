@@ -14,6 +14,8 @@ import android.media.MediaPlayer;
 import android.provider.Settings;
 import java.util.List;
 import android.app.Activity;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.ActivityManager;
@@ -40,10 +42,21 @@ public class UnlockScreenActivity extends AppCompatActivity implements UnlockScr
     private long[] pattern = {0, 1000, 800};
     private static MediaPlayer player = MediaPlayer.create(IncomingCallModule.reactContext, Settings.System.DEFAULT_RINGTONE_URI);
     private static Activity fa;
+    private Timer timer;
 
     @Override
     public void onStart() {
         super.onStart();
+        if (this.timeout > 0) {
+          this.timer = new Timer();
+          this.timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+              // this code will be executed after timeout seconds
+              dismissIncoming();
+            }
+          }, timeout);
+        }
         active = true;
     }
 
@@ -129,33 +142,73 @@ public class UnlockScreenActivity extends AppCompatActivity implements UnlockScr
     public static void dismissIncoming() {
         v.cancel();
         player.stop();
-        fa.finish();
+        // fa.finish();
+        player.prepareAsync();
+        dismissDialing();
     }
 
     private void acceptDialing() {
-        WritableMap params = Arguments.createMap();
-        params.putBoolean("accept", true);
-        params.putString("uuid", uuid);
-        if (!IncomingCallModule.reactContext.hasCurrentActivity()) {
-            params.putBoolean("isHeadless", true);
+        // WritableMap params = Arguments.createMap();
+        // params.putBoolean("accept", true);
+        // params.putString("uuid", uuid);
+        // if (!IncomingCallModule.reactContext.hasCurrentActivity()) {
+        //     params.putBoolean("isHeadless", true);
+        // }
+
+        // sendEvent("answerCall", params);
+
+        // finish();
+
+      WritableMap params = Arguments.createMap();
+      params.putBoolean("accept", true);
+      params.putString("uuid", uuid);
+      if (timer != null){
+        timer.cancel();
+      }
+      if (!IncomingCallModule.reactContext.hasCurrentActivity()) {
+        params.putBoolean("isHeadless", true);
+      }
+      KeyguardManager mKeyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
+
+      if (mKeyguardManager.isDeviceLocked()) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+          mKeyguardManager.requestDismissKeyguard(this, new KeyguardManager.KeyguardDismissCallback() {
+            @Override
+            public void onDismissSucceeded() {
+              super.onDismissSucceeded();
+            }
+          });
         }
+      }
 
-        sendEvent("answerCall", params);
-
-        finish();
+      sendEvent("answerCall", params);
+      finish();
     }
 
     private void dismissDialing() {
+        // WritableMap params = Arguments.createMap();
+        // params.putBoolean("accept", false);
+        // params.putString("uuid", uuid);
+        // if (!IncomingCallModule.reactContext.hasCurrentActivity()) {
+        //     params.putBoolean("isHeadless", true);
+        // }
+
+        // sendEvent("endCall", params);
+
+        // finish();
         WritableMap params = Arguments.createMap();
-        params.putBoolean("accept", false);
-        params.putString("uuid", uuid);
-        if (!IncomingCallModule.reactContext.hasCurrentActivity()) {
-            params.putBoolean("isHeadless", true);
-        }
+      params.putBoolean("accept", false);
+      params.putString("uuid", uuid);
+      if (timer != null) {
+        timer.cancel();
+      }
+      if (!IncomingCallModule.reactContext.hasCurrentActivity()) {
+          params.putBoolean("isHeadless", true);
+      }
 
-        sendEvent("endCall", params);
+      sendEvent("endCall", params);
 
-        finish();
+      finish();
     }
 
     @Override
