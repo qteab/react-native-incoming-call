@@ -58,7 +58,11 @@ public class UnlockScreenActivity extends AppCompatActivity implements UnlockScr
             @Override
             public void run() {
               // this code will be executed after timeout seconds
-              dismissIncoming();
+              v.cancel();
+              player.stop();
+              player.prepareAsync();
+              fa.finish();
+              dismissDialing();
             }
           }, timeout);
         }
@@ -148,7 +152,7 @@ public class UnlockScreenActivity extends AppCompatActivity implements UnlockScr
         // Dont back
     }
 
-    public void dismissIncoming() {
+    public static void dismissIncoming() {
         v.cancel();
         player.stop();
         player.prepareAsync();
