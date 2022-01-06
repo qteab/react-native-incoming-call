@@ -18,6 +18,8 @@ import android.app.Activity;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import android.app.Activity;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
