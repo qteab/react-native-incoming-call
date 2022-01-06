@@ -92,6 +92,8 @@
             android:orientation="vertical"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:layout_marginBottom="0dp"
+            android:layout_marginEnd="150dp"
         >
             <com.incomingcall.AnimateImage
                 android:id="@+id/ivAcceptCall"
@@ -119,8 +121,6 @@
             android:orientation="vertical"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:layout_marginBottom="0dp"
-            android:layout_marginEnd="150dp"
         >
             <com.incomingcall.AnimateImage
                 android:id="@+id/ivDeclineCall"
