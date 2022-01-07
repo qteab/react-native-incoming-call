@@ -83,6 +83,8 @@ public class UnlockScreenActivity extends AppCompatActivity implements UnlockScr
         tvInfo = findViewById(R.id.tvInfo);
         ivAvatar = findViewById(R.id.ivAvatar);
 
+        final RippleBackground rippleBackground=(RippleBackground)findViewById(R.id.content);
+
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             if (bundle.containsKey("uuid")) {
@@ -112,6 +114,7 @@ public class UnlockScreenActivity extends AppCompatActivity implements UnlockScr
                 | WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD);
 
         startRinging();
+        rippleBackground.startRippleAnimation();
 
 
         AnimateImage acceptCallBtn = findViewById(R.id.ivAcceptCall);
@@ -120,12 +123,14 @@ public class UnlockScreenActivity extends AppCompatActivity implements UnlockScr
             public void onClick(View view) {
                 try {
                     stopRinging();
+                    rippleBackground.stopRippleAnimation();
                     acceptDialing();
                 } catch (Exception e) {
                     WritableMap params = Arguments.createMap();
                     params.putString("message", e.getMessage());
                     sendEvent("error", params);
                     dismissDialing();
+                    rippleBackground.stopRippleAnimation();
                 }
             }
         });
@@ -135,6 +140,7 @@ public class UnlockScreenActivity extends AppCompatActivity implements UnlockScr
             @Override
             public void onClick(View view) {
                 stopRinging();
+                rippleBackground.stopRippleAnimation();
                 dismissDialing();
             }
         });
