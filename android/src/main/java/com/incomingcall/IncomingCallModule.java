@@ -6,6 +6,8 @@ import android.app.Activity;
 import android.view.WindowManager;
 import android.content.Context;
 import android.util.Log;
+import android.provider.Settings;
+import android.os.Build;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
@@ -53,7 +55,9 @@ public class IncomingCallModule extends ReactContextBaseJavaModule {
             WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
             i.putExtras(bundle);
             reactContext.startActivity(i);
-            
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                Settings.canDrawOverlays(reactContext);
+            }
         }
     }
 
