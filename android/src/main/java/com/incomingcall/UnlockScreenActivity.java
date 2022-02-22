@@ -33,6 +33,7 @@ public class UnlockScreenActivity extends AppCompatActivity implements UnlockScr
     private static final String TAG = "MessagingService";
     private TextView tvName;
     private TextView tvInfo;
+    private TextView tvPrice;
     private ImageView ivAvatar;
     private Integer timeout = 0;
     private String uuid = "";
@@ -81,6 +82,7 @@ public class UnlockScreenActivity extends AppCompatActivity implements UnlockScr
 
         tvName = findViewById(R.id.tvName);
         tvInfo = findViewById(R.id.tvInfo);
+        tvPrice = findViewById(R.id.tvPrice);
         ivAvatar = findViewById(R.id.ivAvatar);
 
         final RippleBackground rippleBackground=(RippleBackground)findViewById(R.id.content);
@@ -97,6 +99,10 @@ public class UnlockScreenActivity extends AppCompatActivity implements UnlockScr
             if (bundle.containsKey("info")) {
                 String info = bundle.getString("info");
                 tvInfo.setText(info);
+            }
+            if (bundle.containsKey("price")) {
+                String price = bundle.getString("price");
+                tvPrice.setText(price);
             }
             if (bundle.containsKey("avatar")) {
                 String avatar = bundle.getString("avatar");

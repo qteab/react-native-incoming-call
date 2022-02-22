@@ -1,4 +1,7 @@
 <resources>
-    <string name="accept">Accept</string>
-    <string name="decline">Reject</string>
+    <string name="accept">응답</string>
+    <string name="decline">취소</string>
+    <string name="status">통화 요청 중...</string>
+    <string name="noticeone">통화 시작부터 분당 자동으로</string>
+    <string name="noticetwo">다이아가 소진됩니다</string>
 </resources>
