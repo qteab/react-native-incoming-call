@@ -3,13 +3,13 @@
     <font
         android:fontStyle="normal"
         android:fontWeight="700"
-        android:font="@font/Pretendard-Bold" />
+        android:font="@font/pretendardbold" />
     <font
         android:fontStyle="normal"
         android:fontWeight="400"
-        android:font="@font/Pretendard-Regular" />
+        android:font="@font/pretendardregular" />
     <font
         android:fontStyle="normal"
         android:fontWeight="500"
-        android:font="@font/Pretendard-Medium" />
+        android:font="@font/pretendardmedium" />
 </font-family>

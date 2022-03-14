@@ -32,7 +32,7 @@ public class UnlockScreenActivity extends AppCompatActivity implements UnlockScr
 
     private static final String TAG = "MessagingService";
     private TextView tvName;
-    private TextView tvInfo;
+    // private TextView tvInfo;
     private TextView tvPrice;
     private ImageView ivAvatar;
     private Integer timeout = 0;
@@ -81,7 +81,7 @@ public class UnlockScreenActivity extends AppCompatActivity implements UnlockScr
         setContentView(R.layout.activity_call_incoming);
 
         tvName = findViewById(R.id.tvName);
-        tvInfo = findViewById(R.id.tvInfo);
+        // tvInfo = findViewById(R.id.tvInfo);
         tvPrice = findViewById(R.id.tvPrice);
         ivAvatar = findViewById(R.id.ivAvatar);
 
@@ -96,10 +96,10 @@ public class UnlockScreenActivity extends AppCompatActivity implements UnlockScr
                 String name = bundle.getString("name");
                 tvName.setText(name);
             }
-            if (bundle.containsKey("info")) {
-                String info = bundle.getString("info");
-                tvInfo.setText(info);
-            }
+            // if (bundle.containsKey("info")) {
+            //     String info = bundle.getString("info");
+            //     tvInfo.setText(info);
+            // }
             if (bundle.containsKey("price")) {
                 String price = bundle.getString("price");
                 tvPrice.setText(price);
