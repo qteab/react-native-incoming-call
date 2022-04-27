@@ -110,30 +110,6 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvNoticeOne"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/pretendard"
-            android:fontWeight="500"
-            android:gravity="center"
-            android:text="@string/noticeone"
-            android:textColor="#BBBCC4"
-            android:textSize="14sp" />
-
-        <TextView
-            android:id="@+id/tvNoticeTwo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:fontFamily="@font/pretendard"
-            android:fontWeight="500"
-            android:gravity="center"
-            android:text="@string/noticetwo"
-            android:textColor="#BBBCC4"
-            android:textSize="14sp" />
-
         <!-- <TextView
             android:id="@+id/tvInfo"
             android:layout_width="wrap_content"
