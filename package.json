@@ -1,33 +1,111 @@
 {
-  "name": "react-native-ic",
+  "name": "@huynextlevel/react-native-incoming-call",
   "title": "React Native Incoming Call For Android",
-  "version": "1.5.25",
+  "version": "1.0.0",
   "description": "React Native module to display incoming call activity. Only for Android since iOS we have VoIP.",
-  "main": "index.js",
+  "main": "lib/commonjs/index.js",
+  "module": "lib/module/index.js",
+  "types": "lib/typescript/src/index.d.ts",
+  "react-native": "src/index.ts",
+  "source": "src/index",
+  "files": [
+    "lib",
+    "!**/__tests__",
+    "!**/__fixtures__",
+    "!**/__mocks__",
+    "android",
+    "cpp",
+    "!lib/typescript/example"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "prepare": "bob build",
+    "typescript": "tsc --noEmit",
+    "lint": "eslint \"**/*.{js,ts,tsx}\""
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/huynextlevel/react-native-ic",
-    "baseUrl": "https://github.com/huynextlevel/react-native-ic"
+    "url": "git+https://github.com/huynextlevel/react-native-incoming-call.git",
+    "baseUrl": "https://github.com/huynextlevel/react-native-incoming-call.git"
   },
   "keywords": [
-    "react-native"
+    "react-native",
+    "android"
   ],
   "author": {
     "name": "Huy Pham",
-    "email": "huy@nextlevel.sg"
+    "email": "huynextlevel@gmail.com"
   },
   "license": "MIT",
   "licenseFilename": "LICENSE",
   "readmeFilename": "README.md",
   "peerDependencies": {
-    "react": "^16.8.1",
-    "react-native": ">=0.59.0-rc.0 <1.0.x"
+    "react": "*",
+    "react-native": "*"
   },
   "devDependencies": {
-    "react": "^16.8.3",
-    "react-native": "^0.59.10"
+    "@react-native-community/eslint-config": "^2.0.0",
+    "@types/jest": "^26.0.0",
+    "@types/react": "17.0.2",
+    "@types/react-native": "0.67.3",
+    "eslint": "^7.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.1.3",
+    "husky": "^6.0.0",
+    "jest": "^26.0.1",
+    "prettier": "^2.0.5",
+    "react": "17.0.2",
+    "react-native": "0.67.3",
+    "react-native-builder-bob": "^0.18.1",
+    "typescript": "^5.2.2"
+  },
+  "eslintConfig": {
+    "extends": [
+      "@react-native-community",
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "quoteProps": "consistent",
+          "singleQuote": true,
+          "tabWidth": 2,
+          "trailingComma": "es5",
+          "useTabs": false
+        }
+      ]
+    }
+  },
+  "jest": {
+    "preset": "react-native",
+    "modulePathIgnorePatterns": [
+      "<rootDir>/lib/"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint && yarn typescript"
+    }
+  },
+  "eslintIgnore": [
+    "node_modules/",
+    "lib/"
+  ],
+  "prettier": {
+    "quoteProps": "consistent",
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "es5",
+    "useTabs": false
+  },
+  "react-native-builder-bob": {
+    "source": "src",
+    "output": "lib",
+    "targets": [
+      "commonjs",
+      "module",
+      "typescript"
+    ]
   }
 }

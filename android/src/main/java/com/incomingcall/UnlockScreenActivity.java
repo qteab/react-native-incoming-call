@@ -32,8 +32,6 @@ public class UnlockScreenActivity extends AppCompatActivity implements UnlockScr
 
     private static final String TAG = "MessagingService";
     private TextView tvName;
-    // private TextView tvInfo;
-    private TextView tvPrice;
     private ImageView ivAvatar;
     private Integer timeout = 0;
     private String uuid = "";
@@ -81,8 +79,6 @@ public class UnlockScreenActivity extends AppCompatActivity implements UnlockScr
         setContentView(R.layout.activity_call_incoming);
 
         tvName = findViewById(R.id.tvName);
-        // tvInfo = findViewById(R.id.tvInfo);
-        tvPrice = findViewById(R.id.tvPrice);
         ivAvatar = findViewById(R.id.ivAvatar);
 
         final RippleBackground rippleBackground=(RippleBackground)findViewById(R.id.content);
@@ -95,14 +91,6 @@ public class UnlockScreenActivity extends AppCompatActivity implements UnlockScr
             if (bundle.containsKey("name")) {
                 String name = bundle.getString("name");
                 tvName.setText(name);
-            }
-            // if (bundle.containsKey("info")) {
-            //     String info = bundle.getString("info");
-            //     tvInfo.setText(info);
-            // }
-            if (bundle.containsKey("price")) {
-                String price = bundle.getString("price");
-                tvPrice.setText(price);
             }
             if (bundle.containsKey("avatar")) {
                 String avatar = bundle.getString("avatar");
@@ -134,7 +122,7 @@ public class UnlockScreenActivity extends AppCompatActivity implements UnlockScr
                 } catch (Exception e) {
                     WritableMap params = Arguments.createMap();
                     params.putString("message", e.getMessage());
-                    sendEvent("error", params);
+                    sendEvent("ErrorAcceptCall", params);
                     dismissDialing();
                     rippleBackground.stopRippleAnimation();
                 }
@@ -221,7 +209,7 @@ public class UnlockScreenActivity extends AppCompatActivity implements UnlockScr
           }
         }
 
-        sendEvent("answerCall", params);
+        sendEvent("AnswerCall", params);
         finish();
     }
 
@@ -236,7 +224,7 @@ public class UnlockScreenActivity extends AppCompatActivity implements UnlockScr
             params.putBoolean("isHeadless", true);
         }
 
-        sendEvent("endCall", params);
+        sendEvent("EndCall", params);
 
         finish();
     }
