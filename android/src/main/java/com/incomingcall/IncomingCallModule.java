@@ -83,7 +83,12 @@ public class IncomingCallModule extends ReactContextBaseJavaModule {
         Log.d(TAG, "backToForeground, app isOpened ?" + (isOpened ? "true" : "false"));
 
         if (isOpened) {
-            focusIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+            focusIntent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT|
+                    WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON |
+                    WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED |
+                    WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD |
+                    WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON |
+                    WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY);
             activity.startActivity(focusIntent);
         }
     }
