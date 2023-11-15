@@ -1,4 +1,4 @@
-# Incoming Call Version 1.0.0
+# Incoming Call
 
 > React Native module to display custom incoming call activity, best result when using with firebase background messaging. Only for Android since iOS we have VoIP.
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="accept">응답</string>
-    <string name="decline">거절</string>
-    <string name="status">통화 요청 중...</string>
+    <string name="accept">Accept</string>
+    <string name="decline">Decline</string>
+    <string name="status">Connecting...</string>
 </resources>
