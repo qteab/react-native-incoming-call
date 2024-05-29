@@ -1,7 +1,7 @@
 import { NativeEventEmitter, NativeModules } from 'react-native';
 
 type IncomingCallType = {
-  display(uuid: string, name: string, avatar: string, timeout?: number): void;
+  display(uuid: string, name: string, avatar: string | null, timeout?: number): void;
   dismiss(): void;
   backToForeground(): void;
   openAppFromHeadlessMode(uuid: string): void;
