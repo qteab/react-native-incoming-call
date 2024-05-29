@@ -1,0 +1,5 @@
+<resources>
+    <string name="accept">Svara</string>
+    <string name="decline">Avböj</string>
+    <string name="status">Ansluter...</string>
+</resources>

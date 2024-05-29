@@ -1,5 +1,4 @@
 <resources>
-    <!--    <color name="background">#313e49</color>-->
-    <color name="background">#0C122F</color>
-    <color name="rippelColor">#BBBCC4</color>
+  <color name="background">#2B3272</color>
+  <color name="rippelColor">#BBBCC4</color>
 </resources>
