@@ -5,7 +5,7 @@ type IncomingCallType = {
   dismiss(): void;
   backToForeground(): void;
   openAppFromHeadlessMode(uuid: string): void;
-  getExtrasFromHeadlessMode(promise: Promise<any>): void;
+  getExtrasFromHeadlessMode(): Promise<any>;
 };
 
 const IncomingCall = NativeModules.IncomingCall as IncomingCallType;
